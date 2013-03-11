@@ -35,11 +35,13 @@ FORMS=\
 HEADERS=\
     getcal.h \
     calsettings.h
+    icalserver.h
 
 SOURCES=\
     main.cpp\
     getcal.cpp \
     calsettings.cpp
+    icalserver.cpp
 
 # SXE information
 target [
