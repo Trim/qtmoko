@@ -10,6 +10,12 @@
     <height>406</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>GetCalendar</string>
   </property>
@@ -36,7 +42,7 @@
           <x>0</x>
           <y>0</y>
           <width>338</width>
-          <height>310</height>
+          <height>345</height>
          </rect>
         </property>
         <widget class="QListWidget" name="serverList">
@@ -49,13 +55,10 @@
           </rect>
          </property>
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="resizeMode">
-          <enum>QListView::Fixed</enum>
          </property>
          <property name="gridSize">
           <size>
@@ -71,14 +74,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="addServerButton">
-       <property name="text">
-        <string>Add server</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="saveServersButton">
+      <widget class="QPushButton" name="saveConfigButton">
        <property name="text">
         <string>Save</string>
        </property>
