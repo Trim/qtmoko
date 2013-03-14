@@ -2,7 +2,7 @@
 #define ICALSERVER_H
 
 #include <QString>
-#include <QLinkedList>
+#include <QStringList>
 
 class IcalServer {
 private:
@@ -10,7 +10,7 @@ private:
     QString _serverAddress;
     QString _userName;
     QString _userPassword;
-    QLinkedList<QString> * _calendars;
+    QStringList * _calendars;
 
 public:
     /* Constructor : we need at least the server address (the name is for the GUI) */
@@ -22,12 +22,14 @@ public:
     void getLogin(QString * name, QString * password);
 
     /* Manage calendars */
-    void addCalendar();
-    void removeCalendar();
-    void updateCalenar();
-    QLinkedList<QString> * getCalendars();
+    void addCalendar(QString calendar);
+    void removeCalendar(QString calendar);
+    void updateCalenar(QString oldCalendar, QString newCalendar);
+    QStringList * getCalendars();
+    QString getServerName();
+    QString getServerAddress();
 
     /* We'll need to check if configuration is acceptable (http://, server reachable, good http response,...)*/
     bool checkConfig();
-}
+};
 #endif // ICALSERVER_H
