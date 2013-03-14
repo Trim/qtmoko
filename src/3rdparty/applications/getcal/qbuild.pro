@@ -9,14 +9,22 @@ CONFIG+=qtopia
 
 # Build this app as a quicklauncher plugin
 # You need to be using the QTOPIA_ADD_APPLICATION/QTOPIA_MAIN macros or this will not work!
-CONFIG+=quicklaunch
+#CONFIG+=quicklaunch
 
 # Build this project into the singleexec binary
 #CONFIG+=singleexec
 
 # Specify the languages that make lupdate should produce .ts files for
 STRING_LANGUAGE=en_US
-LANGUAGES=en_US de
+LANGUAGES=en_US
+
+APP_NAME = Getcal
+DEFINES += APP_NAME="$$APP_NAME"
+
+APP_UNIX_NAME = getcal
+DEFINES += APP_UNIX_NAME="$$APP_UNIX_NAME"
+
+TARGET = getcal
 
 # Package information (used for qbuild packages)
 pkg [
@@ -30,18 +38,21 @@ pkg [
 # These are the source files that get built to create the application
 FORMS=\
     getcal.ui \
-    settingsdialog.ui
+    calsettings.ui \
+    editserver.ui
 
 HEADERS=\
     getcal.h \
     calsettings.h \
-    icalserver.h
+    icalserver.h \
+    editserver.h
 
 SOURCES=\
     main.cpp\
     getcal.cpp \
     calsettings.cpp \
-    icalserver.cpp
+    icalserver.cpp \
+    editserver.cpp
 
 # SXE information
 target [
@@ -52,10 +63,9 @@ target [
 # Install the launcher item. The metadata comes from the .desktop file
 # and the path here.
 desktop [
-    hint=desktop nct
+    hint=desktop
     files=getcal.desktop
     path=/apps/Applications
-    trtarget=getcal-nct
 ]
 
 # Install some pictures.

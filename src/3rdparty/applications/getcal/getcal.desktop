@@ -1,10 +1,10 @@
 [Translation]
-File=example-nct
-Context=Example
+File=getcal-nct
+Context=Getcal
 
 [Desktop Entry]
-Comment[]=An Example Program
-Exec=example
-Icon=example/Example
+Comment[]=An application to get online calendars
+Exec=getcal
+Icon=getcal/Getcal
 Type=Application
-Name[]=Example
+Name[]=Getcal
