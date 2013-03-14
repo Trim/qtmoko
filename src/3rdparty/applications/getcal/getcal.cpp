@@ -27,7 +27,7 @@
  *  name 'name' and widget flags set to 'f'
  */
 Getcal::Getcal(QWidget *parent, Qt::WFlags f)
-    : QWidget(parent, f), settingsDialog(0)
+    : QWidget(parent, f)
 {
     setupUi(this); // reads the .ui file to determine widgets and layout
     // Construct context menu, available to the user via Qtopia's soft menu bar.
@@ -36,8 +36,10 @@ Getcal::Getcal(QWidget *parent, Qt::WFlags f)
     // The context menu will not be active unless it has at least one action.
     // Tell Qtopia to provide the "Help" option, which will enable the user to
     // read the Help documentation for this application.
-    QSoftMenuBar::setHelpEnabled(this,true);
-    QSoftMenuBar::setInputMethodEnabled (this, false);
+    QSoftMenuBar::setHelpEnabled(this,false);
+    QSoftMenuBar::setInputMethodEnabled (this, true);
+    winSettings = new CalSettings(parent, f);
+    menu->addAction("Settings", winSettings, SLOT(openSettings()));
     menu->addAction("Quit", this, SLOT(close()));
 }
 

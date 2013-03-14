@@ -20,17 +20,16 @@
 #ifndef GETCAL_H
 #define GETCAL_H
 #include "ui_getcal.h"
+#include "calsettings.h"
 #include <QString>
-#include <QLinkedList>
 
 class Getcal : public QWidget, public Ui_Getcal
 {
     Q_OBJECT
+private:
+    CalSettings *winSettings;
 public:
     Getcal( QWidget *parent = 0, Qt::WFlags f = 0 );
     ~Getcal();
-
-private slots:
-    void on_SettingsButton_clicked();
 };
 #endif
