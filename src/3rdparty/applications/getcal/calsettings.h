@@ -3,7 +3,7 @@
 
 #include <QSettings>
 #include <QLinkedList>
-#include <QMainWindow>
+#include <QWidget>
 #include <QPushButton>
 
 #include "icalserver.h"
@@ -16,9 +16,11 @@ class CalSettings : public QWidget, public Ui_CalSettings
 private:
     QSettings * settings;
     EditServer * editServer;
+    QWidget *_parent;
+    Qt::WFlags _f;
 
 public:
-    CalSettings(QWidget *parent = 0, Qt::WFlags f=0);
+    CalSettings(QWidget *parent=0, Qt::WFlags f=0);
     ~CalSettings();
     QLinkedList<IcalServer> retrieveServers();
     void storeServers();

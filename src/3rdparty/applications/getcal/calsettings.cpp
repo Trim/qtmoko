@@ -5,22 +5,21 @@
 
 CalSettings::CalSettings(QWidget *parent, Qt::WFlags f) :
     QWidget(parent, f)
-    //QMainWindow(parent),
-    //settingsUi(new Ui::CalSettings)
 {
-    //settingsUi->setupUi(this);
+    _parent=parent;
+    _f=f;
     settings = new QSettings("Trolltech", "Getcal");
-    /*QMenu *menu = QSoftMenuBar::menuFor(this);
-    menu->addAction("Add server", editServer, SLOT(openServerWindow()));*/
-    editServer = new EditServer(parent, f);
-    QObject::connect(addServerButton, SIGNAL(clicked), editServer, SLOT(addServer()));
 }
 
 CalSettings::~CalSettings(){
     delete this;
 }
 
+/* Create widget only when needed */
 void CalSettings::openSettings(){
     setupUi(this);
-    show();
+    QMenu *menu = QSoftMenuBar::menuFor(this);
+    editServer = new EditServer(_parent, _f);
+    menu->addAction("Add server", editServer, SLOT(openServerWindow()));
+    showMaximized();
 }
