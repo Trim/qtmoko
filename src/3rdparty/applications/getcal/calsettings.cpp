@@ -20,6 +20,6 @@ void CalSettings::openSettings(){
     setupUi(this);
     QMenu *menu = QSoftMenuBar::menuFor(this);
     editServer = new EditServer(_parent, _f);
-    menu->addAction("Add server", editServer, SLOT(openServerWindow()));
+    menu->addAction("Add server", editServer, SLOT(addServer()));
     showMaximized();
 }
