@@ -37,5 +37,12 @@ public:
 
     /* We'll need to check if configuration is acceptable (http://, server reachable, good http response,...)*/
     bool checkConfig();
+
+public slots:
+    void setServerName(QString name);
+    void setServerAddress(QString address);
+    void setUserName(QString userName);
+    void setUserPass(QString userPassword);
+    void addCalendar(QString calendar);
 };
 #endif // ICALSERVER_H

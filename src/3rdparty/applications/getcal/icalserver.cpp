@@ -67,3 +67,24 @@ QString IcalServer::getServerName() const{
 QString IcalServer::getServerAddress() const{
     return _serverAddress;
 }
+
+/* Public slots */
+void IcalServer::setServerName(QString name){
+    _serverName=name;
+}
+
+void IcalServer::setServerAddress(QString address){
+    _serverAddress=address;
+}
+
+void IcalServer::setUserName(QString userName){
+    _userName = userName;
+}
+
+void IcalServer::setUserPass(QString userPassword){
+    _userPassword = userPassword;
+}
+
+void IcalServer::addCalendar(QString calendar){
+    _calendars->append(calendar);
+}
