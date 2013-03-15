@@ -2,8 +2,11 @@
 #define CALSETTINGS_H
 
 #include <QSettings>
-#include <QLinkedList>
+#include <QMap>
+#include <QStringList>
+
 #include <QWidget>
+#include <QListWidget>
 #include <QPushButton>
 
 #include "icalserver.h"
@@ -14,19 +17,23 @@ class CalSettings : public QWidget, public Ui_CalSettings
 {
     Q_OBJECT
 private:
-    QSettings * settings;
-    EditServer * editServer;
+    /* GUI Widgets*/
     QWidget *_parent;
     Qt::WFlags _f;
+
+    /* Settings */
+    QSettings * _settings;
+    QMap<QString, IcalServer> * _serverMap;
+    EditServer * _editServer;
 
 public:
     CalSettings(QWidget *parent=0, Qt::WFlags f=0);
     ~CalSettings();
-    QLinkedList<IcalServer> retrieveServers();
-    void storeServers();
 
 public slots:
     void openSettings();
+    void setServer(IcalServer *server);
+
 };
 
 #endif // CALSETTINGS_H
