@@ -32,4 +32,5 @@ public:
     Getcal( QWidget *parent = 0, Qt::WFlags f = 0 );
     ~Getcal();
 };
+Q_DECLARE_METATYPE(IcalServer);
 #endif

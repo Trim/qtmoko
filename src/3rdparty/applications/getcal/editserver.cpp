@@ -5,6 +5,7 @@ EditServer::EditServer(QWidget *parent, Qt::WFlags f) :
 {
     setupUi(this);
     show();
+    qRegisterMetaType<IcalServer>("IcalServer");
 }
 
 EditServer::~EditServer(){

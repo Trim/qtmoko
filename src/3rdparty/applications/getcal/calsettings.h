@@ -34,6 +34,7 @@ public slots:
     void openSettings();
     void setServer(IcalServer *server);
 
+private slots:
+    void saveSettings();
 };
-
 #endif // CALSETTINGS_H

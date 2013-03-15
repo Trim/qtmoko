@@ -1,5 +1,28 @@
 #include "icalserver.h"
 
+IcalServer::IcalServer(const IcalServer& icalSrv){
+    _serverName = icalSrv.getServerName();
+    _serverAddress = icalSrv.getServerAddress();
+    _userName = icalSrv.getUserName();
+    _userPassword = icalSrv.getPassword();
+    _calendars->clear();
+    //_calendars=_calendars<<icalSrv.getCalendars();
+}
+
+IcalServer& IcalServer::operator=(const IcalServer& icalSrv) {
+    if ( this == &icalSrv ) {
+        return *this; //Self assignment : nothing to do
+    }
+
+    _serverName = icalSrv.getServerName();
+    _serverAddress = icalSrv.getServerAddress();
+    _userName = icalSrv.getUserName();
+    _userPassword = icalSrv.getPassword();
+    _calendars->clear();
+    //_calendars=_calendars<<icalSrv.getCalendars();
+    return *this;
+}
+
 IcalServer::IcalServer(QString serverName, QString serverAddress)
 {
     _serverName = serverName;
@@ -7,21 +30,18 @@ IcalServer::IcalServer(QString serverName, QString serverAddress)
     _calendars = new QStringList();
 }
 
+IcalServer::IcalServer(){
+}
+
 IcalServer::~IcalServer(){
 }
 
-void IcalServer::setLogin(QString userName, QString userPassword){
-    _userName = userName;
-    _userPassword = userPassword;
+QString IcalServer::getUserName() const{
+    return _userName;
 }
 
-void IcalServer::getLogin(QString *name, QString *password){
-    name = &_userName;
-    password = &_userPassword;
-}
-
-void IcalServer::addCalendar(QString calendar){
-    _calendars->append(calendar);
+QString IcalServer::getPassword() const{
+    return _userPassword;
 }
 
 void IcalServer::removeCalendar(QString calendar){
@@ -32,7 +52,7 @@ void IcalServer::updateCalenar(QString oldCalendar, QString newCalendar){
     _calendars->replace(_calendars->indexOf(oldCalendar), newCalendar);
 }
 
-QStringList * IcalServer::getCalendars(){
+QStringList * IcalServer::getCalendars() const{
     return _calendars;
 }
 
@@ -40,10 +60,10 @@ bool IcalServer::checkConfig(){
     return true;
 }
 
-QString IcalServer::getServerName(){
+QString IcalServer::getServerName() const{
     return _serverName;
 }
 
-QString IcalServer::getServerAddress(){
+QString IcalServer::getServerAddress() const{
     return _serverAddress;
 }

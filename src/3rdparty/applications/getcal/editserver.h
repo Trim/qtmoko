@@ -10,7 +10,7 @@ class EditServer : public QWidget, public Ui_EditServer
     Q_OBJECT
 
 private:
-    IcalServer *server;
+    IcalServer *_server;
     void updateUI();
 
 public:
@@ -19,6 +19,9 @@ public:
         
 public slots:
     void addServer();
-};
+    virtual bool close();
 
+signals:
+    void endEdit(IcalServer *server);
+};
 #endif // EDITSERVER_H
