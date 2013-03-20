@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "ui_editserver.h"
 #include "icalserver.h"
+#include <QHideEvent>
 
 class EditServer : public QWidget, public Ui_EditServer
 {
@@ -19,7 +20,9 @@ public:
         
 public slots:
     void addServer();
-    virtual bool close();
+
+protected:
+    virtual void hideEvent(QHideEvent *event);
 
 signals:
     void endEdit(IcalServer *server);

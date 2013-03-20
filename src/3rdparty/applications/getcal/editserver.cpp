@@ -31,7 +31,6 @@ void EditServer::updateUI(){
     }
 }
 
-bool EditServer::close(){
+void EditServer::hideEvent(QHideEvent *event){
     emit endEdit(_server);
-    return true;
 }
