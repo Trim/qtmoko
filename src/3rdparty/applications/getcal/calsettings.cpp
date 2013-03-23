@@ -37,6 +37,7 @@ void CalSettings::setServer(IcalServer *server){
     foreach(srvName, _serverMap->keys()){
         serverList->addItem(srvName);
     }
+    saveSettings();
 }
 
 /* Save all server settings */
