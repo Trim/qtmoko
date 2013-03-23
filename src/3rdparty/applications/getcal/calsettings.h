@@ -17,10 +17,6 @@ class CalSettings : public QWidget, public Ui_CalSettings
 {
     Q_OBJECT
 private:
-    /* GUI Widgets*/
-    QWidget *_parent;
-    Qt::WFlags _f;
-
     /* Settings */
     QSettings * _settings;
     QMap<QString, IcalServer> * _serverMap;

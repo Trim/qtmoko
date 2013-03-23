@@ -6,9 +6,17 @@
 CalSettings::CalSettings(QWidget *parent, Qt::WFlags f) :
     QWidget(parent, f)
 {
-    _parent=parent;
-    _f=f;
+    setupUi(this);
+    qRegisterMetaType<IcalServer>("IcalServer");
+
     _settings = new QSettings("Trolltech", "Getcal");
+    _serverMap = new QMap<QString,IcalServer>();
+    _editServer = new EditServer(parent, f);
+
+    QMenu *menu = QSoftMenuBar::menuFor(this);
+    menu->addAction("Add server", _editServer, SLOT(addServer()));
+    QObject::connect(_editServer, SIGNAL(endEdit(IcalServer*)), this, SLOT(setServer(IcalServer*)));
+    QObject::connect(saveConfigButton, SIGNAL(clicked()), this, SLOT(saveSettings()));
 }
 
 CalSettings::~CalSettings(){
@@ -17,13 +25,9 @@ CalSettings::~CalSettings(){
 
 /* Create widget only when needed */
 void CalSettings::openSettings(){
-    setupUi(this);
-    qRegisterMetaType<IcalServer>("IcalServer");
-    QMenu *menu = QSoftMenuBar::menuFor(this);
-    _editServer = new EditServer(_parent, _f);
-    menu->addAction("Add server", _editServer, SLOT(addServer()));
-    QObject::connect(_editServer, SIGNAL(endEdit(IcalServer*)), this, SLOT(setServer(IcalServer*)));
-    showMaximized();
+    if(!isVisible()){
+        showMaximized();
+    }
 }
 
 void CalSettings::setServer(IcalServer *server){
