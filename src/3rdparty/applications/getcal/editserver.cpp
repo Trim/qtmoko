@@ -31,6 +31,7 @@ void EditServer::updateUI(){
     }
 }
 
-void EditServer::hideEvent(QHideEvent *event){
+void EditServer::closeEvent(QCloseEvent *event){
     emit endEdit(_server);
+    QWidget::closeEvent(event);
 }

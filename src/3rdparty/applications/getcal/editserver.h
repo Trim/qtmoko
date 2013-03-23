@@ -22,7 +22,7 @@ public slots:
     void addServer();
 
 protected:
-    virtual void hideEvent(QHideEvent *event);
+    virtual void closeEvent(QCloseEvent *event);
 
 signals:
     void endEdit(IcalServer *server);
