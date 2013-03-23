@@ -28,7 +28,7 @@ public:
 
     /* Manage calendars */
     void removeCalendar(QString calendar);
-    void updateCalenar(QString oldCalendar, QString newCalendar);
+    void updateCalendar(QString oldCalendar, QString newCalendar);
     QStringList * getCalendars() const;
 
     /* Get and modify server name and address */

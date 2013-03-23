@@ -48,7 +48,7 @@ void IcalServer::removeCalendar(QString calendar){
     _calendars->removeAll(calendar);
 }
 
-void IcalServer::updateCalenar(QString oldCalendar, QString newCalendar){
+void IcalServer::updateCalendar(QString oldCalendar, QString newCalendar){
     _calendars->replace(_calendars->indexOf(oldCalendar), newCalendar);
 }
 
