@@ -5,8 +5,7 @@ IcalServer::IcalServer(const IcalServer& icalSrv){
     _serverAddress = icalSrv.getServerAddress();
     _userName = icalSrv.getUserName();
     _userPassword = icalSrv.getPassword();
-    _calendars->clear();
-    //_calendars=_calendars<<icalSrv.getCalendars();
+    _calendars =  new QStringList(icalSrv.getCalendars());
 }
 
 IcalServer& IcalServer::operator=(const IcalServer& icalSrv) {
@@ -18,8 +17,7 @@ IcalServer& IcalServer::operator=(const IcalServer& icalSrv) {
     _serverAddress = icalSrv.getServerAddress();
     _userName = icalSrv.getUserName();
     _userPassword = icalSrv.getPassword();
-    _calendars->clear();
-    //_calendars=_calendars<<icalSrv.getCalendars();
+    _calendars =  new QStringList(icalSrv.getCalendars());
     return *this;
 }
 
@@ -52,8 +50,8 @@ void IcalServer::updateCalendar(QString oldCalendar, QString newCalendar){
     _calendars->replace(_calendars->indexOf(oldCalendar), newCalendar);
 }
 
-QStringList * IcalServer::getCalendars() const{
-    return _calendars;
+QStringList &IcalServer::getCalendars() const{
+    return *_calendars;
 }
 
 bool IcalServer::checkConfig(){
