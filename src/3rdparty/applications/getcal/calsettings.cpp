@@ -10,6 +10,8 @@ CalSettings::CalSettings(QWidget *parent, Qt::WFlags f) :
     _serverMap = new QMap<QString,IcalServer>();
     _editServer = new EditServer(parent, f);
 
+    readServerSettings();
+
     QMenu *menu = QSoftMenuBar::menuFor(this);
     menu->addAction("Add server", _editServer, SLOT(addServer()));
     QObject::connect(_editServer, SIGNAL(endEdit(IcalServer*)), this, SLOT(setServer(IcalServer*)));
@@ -54,6 +56,21 @@ void CalSettings::saveSettings(){
     qDebug()<< "Settings saved";
 }
 
+/* Read all server from settings */
+void CalSettings::readServerSettings(){
+    _settings->beginGroup(QString("servers"));
+    QStringList serverNames = _settings->childGroups();
+    foreach(QString srvName, serverNames){
+        _settings->beginGroup(srvName);
+        QString srvAddress=(_settings->value("serveraddress")).toString();
+        QString usrName=(_settings->value("username")).toString();
+        QString usrPass=(_settings->value("password")).toString();
+        QStringList calendars = (_settings->value("calendars")).toStringList();
         _settings->endGroup();
+        IcalServer* tmp = new IcalServer(srvName, srvAddress, usrName, usrPass, calendars);
+        _serverMap->insert(srvName, *tmp);
+        QListWidgetItem * item = new QListWidgetItem(srvName);
+        serverList->addItem(item);
     }
+    _settings->endGroup();
 }

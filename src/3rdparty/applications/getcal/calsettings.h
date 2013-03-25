@@ -27,6 +27,7 @@ private:
     QSettings * _settings;
     QMap<QString, IcalServer> * _serverMap;
     EditServer * _editServer;
+    void readServerSettings();
 
 public:
     CalSettings(QWidget *parent=0, Qt::WFlags f=0);
