@@ -20,14 +20,14 @@
 #ifndef GETCAL_H
 #define GETCAL_H
 #include "ui_getcal.h"
-#include "calsettings.h"
+#include "serversettings.h"
 #include <QString>
 
 class Getcal : public QWidget, public Ui_Getcal
 {
     Q_OBJECT
 private:
-    CalSettings *winSettings;
+    ServerSettings *winSettings;
 public:
     Getcal( QWidget *parent = 0, Qt::WFlags f = 0 );
     ~Getcal();

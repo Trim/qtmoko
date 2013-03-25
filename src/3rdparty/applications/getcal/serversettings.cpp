@@ -1,6 +1,6 @@
-#include "calsettings.h"
+#include "serversettings.h"
 
-CalSettings::CalSettings(QWidget *parent, Qt::WFlags f) :
+ServerSettings::ServerSettings(QWidget *parent, Qt::WFlags f) :
     QWidget(parent, f)
 {
     setupUi(this);
@@ -18,29 +18,33 @@ CalSettings::CalSettings(QWidget *parent, Qt::WFlags f) :
     QObject::connect(saveConfigButton, SIGNAL(clicked()), this, SLOT(saveSettings()));
 }
 
-CalSettings::~CalSettings(){
+ServerSettings::~ServerSettings(){
     delete this;
 }
 
 /* Create widget only when needed */
-void CalSettings::openSettings(){
+void ServerSettings::openSettings(){
     if(!isVisible()){
         showMaximized();
     }
 }
 
-void CalSettings::setServer(IcalServer *server){
+void ServerSettings::setServer(IcalServer *server){
     _serverMap->insert(server->getServerName(), *server);
     serverList->clear();
     QString srvName;
     foreach(srvName, _serverMap->keys()){
+        //QListWidgetItem item = new QListWidgetItem(srvName);
         serverList->addItem(srvName);
     }
+    serverList->update();
+    serverList->repaint();
+    QCoreApplication::processEvents();
     saveSettings();
 }
 
 /* Save all server settings */
-void CalSettings::saveSettings(){
+void ServerSettings::saveSettings(){
     _settings->beginGroup(QString("servers"));
     QString srvName;
     for(QMap<QString, IcalServer>::iterator it=_serverMap->begin(); it!=_serverMap->end(); ++it){
@@ -57,7 +61,7 @@ void CalSettings::saveSettings(){
 }
 
 /* Read all server from settings */
-void CalSettings::readServerSettings(){
+void ServerSettings::readServerSettings(){
     _settings->beginGroup(QString("servers"));
     QStringList serverNames = _settings->childGroups();
     foreach(QString srvName, serverNames){
@@ -73,4 +77,7 @@ void CalSettings::readServerSettings(){
         serverList->addItem(item);
     }
     _settings->endGroup();
+    serverList->update();
+    serverList->repaint();
+    QCoreApplication::processEvents();
 }

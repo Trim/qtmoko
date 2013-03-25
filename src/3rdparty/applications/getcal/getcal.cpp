@@ -36,7 +36,7 @@ Getcal::Getcal(QWidget *parent, Qt::WFlags f)
     QSoftMenuBar::setHelpEnabled(this,false);
     QSoftMenuBar::setInputMethodEnabled (this, false);
 
-    winSettings = new CalSettings(parent, f);
+    winSettings = new ServerSettings(parent, f);
     menu->addAction("Settings", winSettings, SLOT(openSettings()));
     menu->addAction("Quit", this, SLOT(close()));
 }

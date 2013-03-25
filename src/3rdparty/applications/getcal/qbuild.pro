@@ -38,21 +38,21 @@ pkg [
 # These are the source files that get built to create the application
 FORMS=\
     getcal.ui \
-    calsettings.ui \
-    editserver.ui
+    editserver.ui \
+    serversettings.ui
 
 HEADERS=\
     getcal.h \
-    calsettings.h \
     icalserver.h \
-    editserver.h
+    editserver.h \
+    serversettings.h
 
 SOURCES=\
     main.cpp\
     getcal.cpp \
-    calsettings.cpp \
     icalserver.cpp \
-    editserver.cpp
+    editserver.cpp \
+    serversettings.cpp
 
 # SXE information
 target [
