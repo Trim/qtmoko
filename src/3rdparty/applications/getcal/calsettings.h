@@ -4,6 +4,12 @@
 #include <QSettings>
 #include <QMap>
 #include <QStringList>
+#include <QString>
+#include <QDebug>
+
+#include <qsoftmenubar.h>
+#include <QMenu>
+#include <QCoreApplication>
 
 #include <QWidget>
 #include <QListWidget>

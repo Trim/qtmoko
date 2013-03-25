@@ -1,7 +1,4 @@
 #include "calsettings.h"
-#include <qsoftmenubar.h>
-#include <QMenu>
-#include <QString>
 
 CalSettings::CalSettings(QWidget *parent, Qt::WFlags f) :
     QWidget(parent, f)
