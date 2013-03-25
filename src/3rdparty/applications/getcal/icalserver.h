@@ -13,12 +13,14 @@ private:
     QString _userName;
     QString _userPassword;
     QStringList * _calendars;
+    void setCalendars(QStringList & calendars);
 
 public:
     /* Constructor : we need at least the server address (the name is for the GUI) */
     IcalServer();
     IcalServer(const IcalServer& icalSrv);
     IcalServer(QString serverName, QString serverAddress);
+    IcalServer(QString serverName, QString serverAddress, QString userName, QString userPassword, QStringList calendars);
     ~IcalServer();
     IcalServer& operator=(const IcalServer& icalSrv);
 

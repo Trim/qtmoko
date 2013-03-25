@@ -28,10 +28,26 @@ IcalServer::IcalServer(QString serverName, QString serverAddress)
     _calendars = new QStringList();
 }
 
+IcalServer::IcalServer(QString serverName,
+                       QString serverAddress,
+                       QString userName,
+                       QString userPassword,
+                       QStringList calendars)
+    : IcalServer(serverName, serverAddress){
+    this->setUserName(userName);
+    this->setUserPass(userPassword);
+    this->setCalendars(calendars);
+}
+
+
 IcalServer::IcalServer(){
 }
 
 IcalServer::~IcalServer(){
+}
+
+void IcalServer::setCalendars(QStringList & calendars){
+    _calendars = new QStringList(calendars);
 }
 
 QString IcalServer::getUserName() const{
