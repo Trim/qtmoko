@@ -39,6 +39,7 @@ void CalSettings::setServer(IcalServer *server){
 
 /* Save all server settings */
 void CalSettings::saveSettings(){
+    _settings->beginGroup(QString("servers"));
     QString srvName;
     for(QMap<QString, IcalServer>::iterator it=_serverMap->begin(); it!=_serverMap->end(); ++it){
         IcalServer& srv = it.value();
@@ -46,6 +47,13 @@ void CalSettings::saveSettings(){
         _settings->setValue("serveraddress", srv.getServerAddress());
         _settings->setValue("username", srv.getUserName());
         _settings->setValue("password", srv.getPassword());
+        _settings->setValue("calendars", srv.getCalendars());
+        _settings->endGroup();
+    }
+    _settings->endGroup();
+    qDebug()<< "Settings saved";
+}
+
         _settings->endGroup();
     }
 }
