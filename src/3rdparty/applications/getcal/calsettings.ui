@@ -32,45 +32,13 @@
       <enum>QLayout::SetDefaultConstraint</enum>
      </property>
      <item>
-      <widget class="QScrollArea" name="scrollServers">
-       <property name="widgetResizable">
-        <bool>true</bool>
+      <widget class="QListWidget" name="serverList">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>1</horstretch>
+         <verstretch>1</verstretch>
+        </sizepolicy>
        </property>
-       <widget class="QWidget" name="scrollServersContent">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>338</width>
-          <height>345</height>
-         </rect>
-        </property>
-        <widget class="QListWidget" name="serverList">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>341</width>
-           <height>351</height>
-          </rect>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="gridSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="uniformItemSizes">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </widget>
       </widget>
      </item>
      <item>
