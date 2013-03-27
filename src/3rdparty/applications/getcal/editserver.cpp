@@ -11,12 +11,21 @@ EditServer::~EditServer(){
     delete this;
 }
 
-void EditServer::addServer(){
-    _server = new IcalServer(QString("A unique name for this server"), QString("http://example.org"));
+void EditServer::setConnections(){
     QObject::connect(uiServerNameLine, SIGNAL(textChanged(QString)), _server, SLOT(setServerName(QString)));
     QObject::connect(uiServerAddressLine, SIGNAL(textChanged(QString)), _server, SLOT(setServerAddress(QString)));
     QObject::connect(uiUserNameLine, SIGNAL(textChanged(QString)), _server, SLOT(setUserName(QString)));
     QObject::connect(uiUserPassLine, SIGNAL(textChanged(QString)), _server, SLOT(setUserPass(QString)));
+    QObject::connect(uiAddCalendar, SIGNAL(clicked()), this, SLOT(addCalendar()));
+}
+
+void EditServer::addServer(){
+    _server = new IcalServer(QString("A unique name for this server"), QString("http://example.org/"));
+    _server->addCalendar("Your calendar");
+    setConnections();
+    updateUI();
+}
+
     updateUI();
 }
 
@@ -26,6 +35,16 @@ void EditServer::updateUI(){
 
     uiServerAddressLine->clear();
     uiServerAddressLine->insert(_server->getServerAddress());
+
+    uiUserNameLine->clear();
+    uiUserNameLine->insert(_server->getUserName());
+
+    uiUserPassLine->clear();
+    uiUserPassLine->insert(_server->getPassword());
+
+    uiCalendarList->clear();
+    uiCalendarList->addItems(_server->getCalendars());
+
     if(!isVisible()){
         showMaximized();
     }

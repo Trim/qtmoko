@@ -13,6 +13,7 @@ class EditServer : public QWidget, public Ui_EditServer
 private:
     IcalServer *_server;
     void updateUI();
+    void setConnections();
 
 public:
     explicit EditServer(QWidget *parent = 0, Qt::WFlags f=0);
