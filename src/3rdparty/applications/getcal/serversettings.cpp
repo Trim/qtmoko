@@ -15,7 +15,7 @@ ServerSettings::ServerSettings(QWidget *parent, Qt::WFlags f) :
     QMenu *menu = QSoftMenuBar::menuFor(this);
     menu->addAction("Add server", _editServer, SLOT(addServer()));
     QObject::connect(_editServer, SIGNAL(endEdit(IcalServer*)), this, SLOT(setServer(IcalServer*)));
-    QObject::connect(saveConfigButton, SIGNAL(clicked()), this, SLOT(saveSettings()));
+    QObject::connect(uiSaveConfigButton, SIGNAL(clicked()), this, SLOT(saveSettings()));
 }
 
 ServerSettings::~ServerSettings(){
@@ -31,15 +31,11 @@ void ServerSettings::openSettings(){
 
 void ServerSettings::setServer(IcalServer *server){
     _serverMap->insert(server->getServerName(), *server);
-    serverList->clear();
+    uiServerList->clear();
     QString srvName;
     foreach(srvName, _serverMap->keys()){
-        //QListWidgetItem item = new QListWidgetItem(srvName);
-        serverList->addItem(srvName);
+        uiServerList->addItem(srvName);
     }
-    serverList->update();
-    serverList->repaint();
-    QCoreApplication::processEvents();
     saveSettings();
 }
 
@@ -74,10 +70,7 @@ void ServerSettings::readServerSettings(){
         IcalServer* tmp = new IcalServer(srvName, srvAddress, usrName, usrPass, calendars);
         _serverMap->insert(srvName, *tmp);
         QListWidgetItem * item = new QListWidgetItem(srvName);
-        serverList->addItem(item);
+        uiServerList->addItem(item);
     }
     _settings->endGroup();
-    serverList->update();
-    serverList->repaint();
-    QCoreApplication::processEvents();
 }

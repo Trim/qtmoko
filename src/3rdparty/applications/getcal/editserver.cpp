@@ -13,19 +13,19 @@ EditServer::~EditServer(){
 
 void EditServer::addServer(){
     _server = new IcalServer(QString("A unique name for this server"), QString("http://example.org"));
-    QObject::connect(serverNameLine, SIGNAL(textChanged(QString)), _server, SLOT(setServerName(QString)));
-    QObject::connect(serverAddressLine, SIGNAL(textChanged(QString)), _server, SLOT(setServerAddress(QString)));
-    QObject::connect(userNameLine, SIGNAL(textChanged(QString)), _server, SLOT(setUserName(QString)));
-    QObject::connect(userPassLine, SIGNAL(textChanged(QString)), _server, SLOT(setUserPass(QString)));
+    QObject::connect(uiServerNameLine, SIGNAL(textChanged(QString)), _server, SLOT(setServerName(QString)));
+    QObject::connect(uiServerAddressLine, SIGNAL(textChanged(QString)), _server, SLOT(setServerAddress(QString)));
+    QObject::connect(uiUserNameLine, SIGNAL(textChanged(QString)), _server, SLOT(setUserName(QString)));
+    QObject::connect(uiUserPassLine, SIGNAL(textChanged(QString)), _server, SLOT(setUserPass(QString)));
     updateUI();
 }
 
 void EditServer::updateUI(){
-    serverNameLine->clear();
-    serverNameLine->insert(_server->getServerName());
+    uiServerNameLine->clear();
+    uiServerNameLine->insert(_server->getServerName());
 
-    serverAddressLine->clear();
-    serverAddressLine->insert(_server->getServerAddress());
+    uiServerAddressLine->clear();
+    uiServerAddressLine->insert(_server->getServerAddress());
     if(!isVisible()){
         showMaximized();
     }
