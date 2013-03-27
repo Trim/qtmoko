@@ -22,6 +22,9 @@ public:
 public slots:
     void addServer();
 
+private slots:
+    void addCalendar();
+
 protected:
     virtual void closeEvent(QCloseEvent *event);
 

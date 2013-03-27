@@ -29,6 +29,14 @@ void EditServer::addServer(){
     updateUI();
 }
 
+void EditServer::addCalendar(){
+    QString newCal = uiCalendarInput->text();
+    if(newCal.length()!=0 && !uiCalendarList->contains(newCal)){
+        uiCalendarList->addItem(newCal);
+        _server->addCalendar(newCal);
+    }
+}
+
 void EditServer::updateUI(){
     uiServerNameLine->clear();
     uiServerNameLine->insert(_server->getServerName());
