@@ -14,12 +14,21 @@ ServerSettings::ServerSettings(QWidget *parent, Qt::WFlags f) :
 
     QMenu *menu = QSoftMenuBar::menuFor(this);
     menu->addAction("Add server", _editServer, SLOT(addServer()));
+    menu->addAction("Edit server", this, SLOT(editServer()));
+    QObject::connect(this, SIGNAL(editClickedServer(IcalServer *)), _editServer, SLOT(editServer(IcalServer*)));
     QObject::connect(_editServer, SIGNAL(endEdit(IcalServer*)), this, SLOT(setServer(IcalServer*)));
     QObject::connect(uiSaveConfigButton, SIGNAL(clicked()), this, SLOT(saveSettings()));
 }
 
 ServerSettings::~ServerSettings(){
     delete this;
+}
+
+void ServerSettings::editServer(){
+    QListWidgetItem *serverItem = uiServerList->currentItem();
+    QString serverName = serverItem->text();
+    IcalServer server = _serverMap->value(serverName);
+    emit editClickedServer(&server);
 }
 
 /* Create widget only when needed */

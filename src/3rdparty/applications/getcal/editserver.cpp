@@ -26,6 +26,9 @@ void EditServer::addServer(){
     updateUI();
 }
 
+void EditServer::editServer(IcalServer *server){
+    _server = server;
+    setConnections();
     updateUI();
 }
 

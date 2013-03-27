@@ -21,6 +21,7 @@ public:
         
 public slots:
     void addServer();
+    void editServer(IcalServer *server);
 
 private slots:
     void addCalendar();
