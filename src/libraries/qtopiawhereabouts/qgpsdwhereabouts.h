@@ -40,7 +40,7 @@
 class QBasicTimer;
 class QTimerEvent;
 
-class QGpsdWhereabouts : public QWhereabouts
+class QTOPIAWHEREABOUTS_EXPORT QGpsdWhereabouts : public QWhereabouts
 {
     Q_OBJECT
 
@@ -65,7 +65,8 @@ private:
     bool emit_frequent; /* shall we emit frequent updates */
     bool emit_oneshot;  /* shall we emit next update only */
     int  elapsed_time;  /* calculate time since last emit */
-    struct gps_data_t gps_data;
+    struct gps_data_t gpsdata;
+    struct gps_data_t *gps_data;
 
     QBasicTimer *m_queryTimer;
 
