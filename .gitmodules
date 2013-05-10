@@ -121,3 +121,6 @@
 [submodule "src/3rdparty/applications/minitube"]
 	path = src/3rdparty/applications/minitube
 	url = git://github.com/radekp/minitube.git
+[submodule "src/3rdparty/applications/browser"]
+	path = src/3rdparty/applications/browser
+	url = git://github.com/ArianaLas/Browser.git
