@@ -124,3 +124,6 @@
 [submodule "src/3rdparty/applications/browser"]
 	path = src/3rdparty/applications/browser
 	url = git://github.com/ArianaLas/Browser.git
+[submodule "src/3rdparty/applications/getcal"]
+	path = src/3rdparty/applications/getcal
+	url = git@github.com:Trim/getcal.git
