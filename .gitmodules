@@ -126,4 +126,7 @@
 	url = git://github.com/ArianaLas/Browser.git
 [submodule "src/3rdparty/applications/getcal"]
 	path = src/3rdparty/applications/getcal
-	url = git@github.com:Trim/getcal.git
+	url = git://adorsaz.ch/getcal.git
+[submodule "src/3rdparty/applications/ics2qtcal"]
+	path = src/3rdparty/applications/ics2qtcal
+	url = git://adorsaz.ch/qtmoko-ics.git
