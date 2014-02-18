@@ -246,20 +246,20 @@ void Browser::displayPlainText(const QMailMessage* mail)
                     // TODO: A good implementation would be able to extract the plain text parts
                     // from text/html and text/enriched...
 
-                    if (part.contentType().type().toLower() == "text") {
-                        if (part.contentType().subType().toLower() == "plain") {
+                    if (part.contentType().type().toLower().contains("text")) {
+                        if (part.contentType().subType().toLower().contains("plain")) {
                             // This is the best part for us
                             bestPart = &part;
                             break;
                         }
-                        else if (part.contentType().subType().toLower() == "html") {
+                        else if (part.contentType().subType().toLower().contains("html")) {
                             // This is the worst, but still acceptable, text part for us
                             if (bestPart == 0)
                                 bestPart = &part;
                         }
                         else  {
                             // Some other text - better than html, probably
-                            if ((bestPart != 0) && (bestPart->contentType().subType().toLower() == "html"))
+                            if ((bestPart != 0) && (bestPart->contentType().subType().toLower().contains("html")))
                                 bestPart = &part;
                         }
                     }
@@ -284,7 +284,7 @@ void Browser::displayPlainText(const QMailMessage* mail)
                 }
 
                 // Render the start part, if possible
-                if (startPart->contentType().type().toLower() == "text")
+                if (startPart->contentType().type().toLower().contains("text"))
                     bodyText += startPart->body().data() + "\n";
                 else
                     bodyText += "\n<" + tr("Message part is not displayable") + ">\n";
@@ -298,7 +298,7 @@ void Browser::displayPlainText(const QMailMessage* mail)
                 for ( uint i = 0; i < mail->partCount(); i++ ) {
                     const QMailMessagePart &part = mail->partAt( i );
 
-                    if (part.contentType().type().toLower() == "text") {
+                    if (part.contentType().type().toLower().contains("text")) {
                         bodyText += part.body().data() + "\n";
                     } else {
                         bodyText += "\n<" + tr("Part") + ": " + part.displayName() + ">\n";
