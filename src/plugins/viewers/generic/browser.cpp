@@ -35,6 +35,8 @@
 
 #include <limits.h>
 
+#include <QDebug>
+
 static QString replyColor1, replyColor2;
 
 static int findReplyColors()
@@ -245,6 +247,12 @@ void Browser::displayPlainText(const QMailMessage* mail)
 
                     // TODO: A good implementation would be able to extract the plain text parts
                     // from text/html and text/enriched...
+                    
+                    qDebug() 	<< "[GenericBrowser] PlainDisplay : found part with type '"
+                    			<< part.contentType().type().toLower()
+                    			<< "' and subtype '"
+                    			<< part.contentType().subType()
+                    			<< "'";
 
                     if (part.contentType().type().toLower().contains("text")) {
                         if (part.contentType().subType().toLower().contains("plain")) {
@@ -268,7 +276,7 @@ void Browser::displayPlainText(const QMailMessage* mail)
                 if (bestPart != 0)
                     bodyText += bestPart->body().data() + "\n";
                 else
-                    bodyText += "\n<" + tr("Message part is not displayable") + ">\n";
+                    bodyText += "\n<" + tr("Message part (alternative) is not displayable") + ">\n";
             }
             else if ( mail->multipartType() == QMailMessagePartContainer::MultipartRelated ) {
                 const QMailMessagePart* startPart = &mail->partAt(0);
@@ -287,7 +295,7 @@ void Browser::displayPlainText(const QMailMessage* mail)
                 if (startPart->contentType().type().toLower().contains("text"))
                     bodyText += startPart->body().data() + "\n";
                 else
-                    bodyText += "\n<" + tr("Message part is not displayable") + ">\n";
+                    bodyText += "\n<" + tr("Message part (related) is not displayable") + ">\n";
             }
             else {
                 // According to RFC 2046, any unrecognised type should be treated as 'mixed'
