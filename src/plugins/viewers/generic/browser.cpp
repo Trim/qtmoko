@@ -35,7 +35,7 @@
 
 #include <limits.h>
 
-#include <QDebug>
+#include <qtopialog.h>
 
 static QString replyColor1, replyColor2;
 
@@ -241,6 +241,10 @@ void Browser::displayPlainText(const QMailMessage* mail)
             if ( mail->multipartType() == QMailMessagePartContainer::MultipartAlternative ) {
                 const QMailMessagePart* bestPart = 0;
 
+                qLog(Messaging) << "Look for plain part in "
+                                << mail->partCount()
+                                << " parts";
+
                 // Find the best alternative for text rendering
                 for ( uint i = 0; i < mail->partCount(); i++ ) {
                     const QMailMessagePart &part = mail->partAt( i );
@@ -248,27 +252,32 @@ void Browser::displayPlainText(const QMailMessage* mail)
                     // TODO: A good implementation would be able to extract the plain text parts
                     // from text/html and text/enriched...
                     
-                    qDebug() 	<< "[GenericBrowser] PlainDisplay : found part with type '"
-                    			<< part.contentType().type().toLower()
-                    			<< "' and subtype '"
-                    			<< part.contentType().subType()
-                    			<< "'";
+                    qLog(Messaging)    << "PlainDisplay : found part with type '"
+                                            << part.contentType().type().toLower()
+                                            << "' and subtype '"
+                                            << part.contentType().subType()
+                                            << "'";
 
                     if (part.contentType().type().toLower().contains("text")) {
                         if (part.contentType().subType().toLower().contains("plain")) {
                             // This is the best part for us
                             bestPart = &part;
+                            qLog(Messaging) << "text/plain part found";
                             break;
                         }
                         else if (part.contentType().subType().toLower().contains("html")) {
                             // This is the worst, but still acceptable, text part for us
-                            if (bestPart == 0)
+                            if (bestPart == 0){
                                 bestPart = &part;
+                                qLog(Messaging) << "text/html part found";
+                            }
                         }
                         else  {
                             // Some other text - better than html, probably
-                            if ((bestPart != 0) && (bestPart->contentType().subType().toLower().contains("html")))
+                            if ((bestPart != 0) && (bestPart->contentType().subType().toLower().contains("html"))){
                                 bestPart = &part;
+                                qLog(Messaging) << "text/other part found";
+                            }
                         }
                     }
                 }
