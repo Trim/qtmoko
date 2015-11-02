@@ -414,7 +414,7 @@ int NeoControl::openAlsaMixer()
         text += QString("snd_mixer_open error %1").arg(ret);
         goto err;
     }
-    if ((ret = snd_mixer_attach(mixerFd, "default")) < 0) {
+    if ((ret = snd_mixer_attach(mixerFd, "gta04")) < 0) {
         text += QString("snd_mixer_attach error %1").arg(ret);
         goto err;
     }
