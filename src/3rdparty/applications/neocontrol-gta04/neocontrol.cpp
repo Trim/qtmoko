@@ -54,7 +54,7 @@ NeoControl::NeoControl(QWidget * parent, Qt::WFlags f)
     layout->addWidget(chkFso);
     layout->addLayout(buttonLayout);
 
-    showScreen(NeoControl::ScreenCharge);
+    showScreen(NeoControl::ScreenInit);
 }
 
 NeoControl::~NeoControl()
