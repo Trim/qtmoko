@@ -28,7 +28,7 @@ NeoControl::NeoControl(QWidget * parent, Qt::WFlags f)
 
     label = new QLabel(this);
     normalFont = label->font();
-    smallFont = QFont(normalFont.family(), (3 * normalFont.pointSize()) / 5);
+    smallFont = QFont(normalFont.family(), (4 * normalFont.pointSize()) / 5);
     lineEdit = new QLineEdit(this);
 
     label4 = new QLabel(this);
