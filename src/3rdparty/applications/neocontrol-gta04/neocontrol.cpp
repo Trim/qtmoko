@@ -162,29 +162,35 @@ void NeoControl::saveClicked()
 
 void NeoControl::showScreen(NeoControl::Screen scr)
 {
-    if (scr == ScreenMixer) {
-        openAlsaMixer();
-    }
+    // Reset env of current screen we are leaving
     if (this->screen == ScreenMixer) {
         closeAlsaMixer();
     }
     if (this->screen == ScreenSysfs) {
         label->setFont(normalFont);
     }
-    if (scr == ScreenSysfs) {
-        label->setFont(smallFont);
-    }
     if (this->screen == ScreenCharge) {
         setFont(normalFont);
+    }
+
+    // Set env for next screen to be shown
+    if (scr == ScreenMixer) {
+        openAlsaMixer();
+    }
+    if (scr == ScreenSysfs) {
+        label->setFont(smallFont);
     }
     if (scr == ScreenCharge) {
         setFont(smallFont);
     }
 
+    // Forget current screen, set the new one
     this->screen = scr;
 
-    label->setVisible(scr == ScreenInit || scr == ScreenRtc
-                      || scr == ScreenMixer || scr == ScreenModem
+    label->setVisible(scr == ScreenInit
+                      || scr == ScreenRtc
+                      || scr == ScreenMixer
+                      || scr == ScreenModem
                       || scr == ScreenSysfs);
     bBack->setText(scr == ScreenInit ? tr("Quit") : tr("Back"));
     lineEdit->setVisible(scr == ScreenModem);
